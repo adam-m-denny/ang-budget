@@ -4,6 +4,17 @@ var http = require("http"),
     fs = require("fs")
     port = process.argv[2] || 8888;
 
+var MongoClient = require('mongodb').MongoClient;
+
+MongoClient.connect('mongodb://localhost:27017/exampleDb', function(err, db){
+	if(err){
+		return console.dir(err);
+	}
+	if(!err){
+		console.log("We are connected");
+	}
+});
+
 http.createServer(function(request, response) {
 
   var uri = url.parse(request.url).pathname
