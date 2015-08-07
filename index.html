@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="budget">
+<head>
+	<title></title>
+	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+	<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+<body>
+	<header>
+		<nav>
+		</nav>
+	</header>
+	<div id="wrapper" ng-controller="BudgetController as budget">
+		<section id="expenses">
+			<ul ng-repeat="expense in budget.expenses">
+				<li ng-mouseover="show = true" ng-mouseout="show = false">{{expense.cost | currency}}</li>
+				<div budget-tooltip ng-hide="!show"></div>
+			</ul>
+		</section>
+		<form name="expenseForm" id="entries" ng-controller="ExpenseController as expenseCtrl" ng-submit="expenseForm.$valid && expenseCtrl.addExpense(expense)" novalidate>
+			<input type="text" ng-model="expenseCtrl.expense.cost" placeholder="$0.00" required />
+			<input type="text" ng-model="expenseCtrl.expense.name" placeholder="From" />
+			<input type="text" ng-model="expenseCtrl.expense.category" placeholder="Category" />
+			<input type="submit" value="Submit" />
+		</form>
+		<section id="graphs">
+		</section>
+	</div>
+	<script type="text/javascript" src="angular.min.js"></script>
+	<script type="text/javascript" src="script.js"></script>
+</body>
+
+<!--		<div ng-controller="StoreController as budget">
+			<ul class="list-group">
+				<li class="list-group-item" ng-repeat="product in budget.products"><!--directive-->
+				<!--<product-title></product-title><!--custom directive-->
+				<!--<button ng-show="product.canPurchase">Add to Cart</button>
+				
+				<blockquote ng-repeat="review in product.reviews">
+					<b>Stars: {{review.stars}}</b>
+					{{review.body}}
+					<cite>by: {{review.author}}</cite>
+				</blockquote>
+				<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+					<blockquote>
+						<b>Stars: {{reviewCtrl.review.stars}}</b>
+						{{reviewCtrl.review.body}}
+						<cite>by: {{reviewCtrl.review.author}}</cite>
+					</blockquote>
+					<select ng-model="reviewCtrl.review.stars" required>
+						<option value="1">1 Star</option>
+						<option value="2">2 Stars</option>
+					</select>
+					<textarea ng-model="reviewCtrl.review.body" required></textarea>
+					<label>by:</label>
+					<input ng-model="reviewCtrl.review.author" type="email" required/>
+					<div>reviewForm is {{reviewForm.$valid}}</div>
+					<input type="submit" value="Submit" />
+				</form>
+				</li>
+				<style>
+					.ng-invalid.ng-dirty {
+						border: 1px solid red;
+					}
+					.ng-valid.ng-dirty{
+						border 1px solid green;
+					}
+				</style>
+			</ul>
+		</div>-->
