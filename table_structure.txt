@@ -1,0 +1,5 @@
+db structure
+
+users 		| 	id, username, hash, created
+	
+id_table 	|	expense, location, type, date, tags

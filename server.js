@@ -5,6 +5,8 @@ var http = require("http"),
     port = process.argv[2] || 8888;
 
 var MongoClient = require('mongodb').MongoClient;
+var express = require('express');
+var app = express();
 
 MongoClient.connect('mongodb://localhost:27017/exampleDb', function(err, db){
 	if(err){
